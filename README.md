@@ -1,11 +1,11 @@
 **Language:** English | [简体中文](README_zh.md)
 
-# agentrt-liunx Security (AirymaxOS Security)
+# agentrt-linux Security (AirymaxOS Security)
 
 [![Version](https://img.shields.io/badge/version-0.1.1-5a6b7e)](https://atomgit.com/openairymax/security)
 [![License](https://img.shields.io/badge/license-AGPL--3.0+Apache--2.0-4a90d9)](LICENSE)
 
-> Security subsystem of [agentrt-liunx（AirymaxOS）](https://atomgit.com/openairymax/agentrt-linux) — the AI Agent Operating System.
+> Security subsystem of [agentrt-linux（AirymaxOS）](https://atomgit.com/openairymax/agentrt-linux) — the AI Agent Operating System.
 > One of the leaf repositories aggregated by the [agentrt-linux](https://atomgit.com/openairymax/agentrt-linux) management repo.
 > Reuses and extends the Airymax `cupolas` module for OS-level endogenous security.
 
@@ -13,21 +13,21 @@
 
 ## Overview
 
-The **agentrt-liunx Security (AirymaxOS Security)** (`airymaxos-security`) is the security subsystem of agentrt-liunx（AirymaxOS）, the AI Agent Operating System. It implements capability-based security referencing seL4, integrates with the Linux Security Module (LSM) hooks and Landlock, adds confidential computing support, and embeds Chinese national cryptography (国密) algorithms for compliant deployments.
+The **agentrt-linux Security (AirymaxOS Security)** (`airymaxos-security`) is the security subsystem of agentrt-linux（AirymaxOS）, the AI Agent Operating System. It implements capability-based security referencing seL4, integrates with the Linux Security Module (LSM) hooks and Landlock, adds confidential computing support, and embeds Chinese national cryptography (国密) algorithms for compliant deployments.
 
-In agentrt-liunx 0.1.1, this repository is **documentation complete** (文档体系完成) containing design documents, reference distribution specifications, and architectural drafts. Actual kernel and OS development takes place in version 1.0.1.
+In agentrt-linux 0.1.1, this repository is **documentation complete** (文档体系完成) containing design documents, reference distribution specifications, and architectural drafts. Actual kernel and OS development takes place in version 1.0.1.
 
 ### Core Technologies
 
 - **Capability-based security** referencing seL4 for fine-grained, delegated authority
-- **LSM hooks** integration with the agentrt-liunx Kernel (AirymaxOS Kernel) for mandatory access control
+- **LSM hooks** integration with the agentrt-linux Kernel (AirymaxOS Kernel) for mandatory access control
 - **Landlock** for unprivileged, per-process filesystem sandboxes
 - **Confidential computing** leveraging hardware enclaves and encrypted virtualization
 - **Chinese national cryptography (国密)** algorithms (SM2 / SM3 / SM4) for compliant deployments
 
 ### Relationship with Airymax cupolas
 
-The agentrt-liunx Security (AirymaxOS Security) reuses and extends the `cupolas` module from the Airymax runtime platform. The sandbox model, endogenous security policy and capability machinery are shared between the user-space runtime (agentrt) and the OS-level security layer (agentrt-liunx（AirymaxOS）), ensuring architectural homology with no adaptation layer.
+The agentrt-linux Security (AirymaxOS Security) reuses and extends the `cupolas` module from the Airymax runtime platform. The sandbox model, endogenous security policy and capability machinery are shared between the user-space runtime (agentrt) and the OS-level security layer (agentrt-linux（AirymaxOS）), ensuring architectural homology with no adaptation layer.
 
 ## Repository Structure (0.1.1 Documentation Complete)
 
@@ -46,14 +46,14 @@ Design documents and reference distribution specifications are maintained in the
 
 ### Upstream
 
-- **agentrt-liunx Kernel (AirymaxOS Kernel)** — provides the LSM hooks, capability primitives and io_uring entry points
+- **agentrt-linux Kernel (AirymaxOS Kernel)** — provides the LSM hooks, capability primitives and io_uring entry points
 - **Airymax cupolas** — provides the sandbox and endogenous security model that are reused and extended
 - **Euler 24.03 LTS / 26.03** — reference distribution for security and cryptography standards
 
 ### Downstream
 
-- **agentrt-liunx Services (AirymaxOS Services)** — service layer that enforces the security policy on every daemon
-- **agentrt-liunx Cognition（AirymaxOS Cognition）** — cognition engine that runs inside Cupolas sandboxes for agent isolation
+- **agentrt-linux Services (AirymaxOS Services)** — service layer that enforces the security policy on every daemon
+- **agentrt-linux Cognition（AirymaxOS Cognition）** — cognition engine that runs inside Cupolas sandboxes for agent isolation
 
 ## Branch Strategy
 
