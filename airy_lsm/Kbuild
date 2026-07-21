@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: GPL-2.0-only
+#
+# airy_lsm 子目录 Kbuild
+# 纯 C LSM 独立内核模块（airy_ind）
+#
+# 模块名：airy_ind.ko（避免与 kernel 子仓的 airy.ko 冲突）
+
+obj-m := airy_ind.o
+
+airy_ind-objs := airy_lsm.o
+
+# [SC] 头文件引用（OS-IRON-014 / 决策 G1）
+# 唯一物理宿主：kernel/include/uapi/linux/airymax/
+# 禁止物理副本，通过 -I 引用
+ccflags-y += -I$(src)/../kernel/include
+ccflags-y += -I$(src)/../kernel/include/uapi/linux
+ccflags-y += -Werror
