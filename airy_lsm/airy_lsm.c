@@ -4,6 +4,25 @@
  *
  * airy_lsm.c — AirymaxOS 纯 C LSM 独立内核模块（airy_ind）
  *
+ * ⚠️⚠️⚠️ 安全警告 — UAF 风险 ⚠️⚠️⚠️
+ * ─────────────────────────────────────────────────────────────────
+ * 本模块（airy_ind）使用直接覆写 task->security 指针的方式管理
+ * 安全上下文（见 airy_ind_task_alloc 第 task->security = sec 赋值）。
+ *
+ * 而 kernel/security/airy/airy_lsm.c（DEFINE_LSM(airy)）使用 LSM
+ * blob 机制（task->security + airy_blob_sizes.lbs_task 偏移访问）。
+ *
+ * 如果两个 LSM 同时加载，airy_ind 的 task_alloc 会覆写 task->security
+ * 指针，导致 airy LSM 的 task_free 通过 blob 偏移读取到 airy_ind
+ * 分配的 kzalloc 内存而非 blob 内存，触发 use-after-free 或 double-free。
+ *
+ * 禁止在生产构建中同时加载 airy 和 airy_ind。airy_ind 仅用于 [IND]
+ * 教学和研究目的，生产环境必须使用 kernel/security/airy/airy_lsm.c。
+ *
+ * 1.0.1 计划：将 airy_ind 迁移到 LSM blob 机制（lsm_set_blob）以消除
+ * 此 UAF 风险。参见 v3.5 审查报告 P0-3。
+ * ─────────────────────────────────────────────────────────────────
+ *
  * 职责：
  *   作为 [IND] 完全独立层的 LSM 实例，通过 DEFINE_LSM(airy_ind)
  *   注册到 Linux 安全模块框架。实现 task_alloc 钩子，为每个
