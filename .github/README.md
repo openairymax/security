@@ -27,7 +27,7 @@ security/.github/
 | Workflow | Jobs | Relevance to security |
 |----------|------|------------------------|
 | `mgmt-orchestrator.yml` | `file-integrity` + `orchestrate-leaf-ci` | Verifies the `security/` submodule dir exists; aggregates this repo's CI status |
-| `sc-dual-ci.yml` | `sc-validate` + `sc-trigger-and-await` | Guards `security_types.h` (`[SC]` 6+2 set); creates agentrt mirror PR on changes |
+| `sc-dual-ci.yml` | `sc-validate` + `sc-trigger-and-await` | Guards `security_types.h` (`[SC]` 10 core headers); creates agentrt mirror PR on changes |
 | `nightly.yml` | `nightly-test-suite` + `nightly-revert-or-budget` | seL4-style formal verification of capability and LSM critical paths |
 | `release.yml` | `build-and-sign` + `publish-release` | `syft security/` SBOM; release artifacts signed with GPG + cosign |
 
@@ -35,7 +35,7 @@ security/.github/
 
 - Add leaf-local workflows for crypto (SM2/SM3/SM4) self-tests, Landlock unit
   tests, and LSM hook coverage; keep each workflow ≤ 2 jobs.
-- `[SC]` header `security_types.h` lives at `kernel/include/airymax/security_types.h`
+- `[SC]` header `security_types.h` lives at `kernel/include/uapi/linux/airymax/security_types.h`
   — single physical source, no duplicates (OS-IRON-014).
 - Security APIs use the `airy_*` prefix.
 - Vulnerability disclosures follow the management repository's `SECURITY.md`.
