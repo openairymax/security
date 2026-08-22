@@ -1,12 +1,12 @@
 **Language:** English | [简体中文](README_zh.md)
 
-# security — agentrt-linux (AirymaxOS) Security
+# security — agent-linux (AirymaxOS) Security
 
 [![Version](https://img.shields.io/badge/version-0.1.1-5a6b7e)](https://atomgit.com/openairymax/security)
 [![License](https://img.shields.io/badge/license-AGPL--3.0+Apache--2.0-4a90d9)](LICENSE)
 
-> Security subsystem of [agentrt-linux (AirymaxOS)](https://atomgit.com/openairymax/agentrt-linux) — the AI Agent Operating System.
-> One of the 8 leaf repositories aggregated by the [agentrt-linux](https://atomgit.com/openairymax/agentrt-linux) management repo.
+> Security subsystem of [agent-linux (AirymaxOS)](https://atomgit.com/openairymax/agent-linux) — the AI Agent Operating System.
+> One of the 8 leaf repositories aggregated by the [agent-linux](https://atomgit.com/openairymax/agent-linux) management repo.
 > Reuses and extends the Airymax `cupolas` module for OS-level endogenous security.
 
 Copyright (c) 2025-2026 SPHARX Ltd. All Rights Reserved.
@@ -15,7 +15,7 @@ Copyright (c) 2025-2026 SPHARX Ltd. All Rights Reserved.
 
 ## Positioning
 
-The **security** leaf repository is the security subsystem of agentrt-linux
+The **security** leaf repository is the security subsystem of agent-linux
 (AirymaxOS). It implements capability-based security referencing seL4, integrates
 with the Linux Security Module (LSM) hooks and Landlock, adds confidential
 computing support, and embeds Chinese national cryptography (国密) algorithms for
@@ -74,10 +74,10 @@ own `.github/workflows/`.
 - **DCO**: every commit must be `Signed-off-by` (`git commit -s`).
 - **Commit prefix**: `security:`.
 - **Code style**: C — tab-8, 80 cols (`.clang-format`); run `make format-check`.
-- **`[SC]` changes**: edits to `security_types.h` require dual CI (agentrt-linux
+- **`[SC]` changes**: edits to `security_types.h` require dual CI (agent-linux
   `sc-dual-ci.yml` + agentrt mirror PR) and L1+L3 approval per OS-IRON-014.
 - **Function prefix**: `airy_*` (not legacy `airymaxos_*`).
-- **Vulnerabilities**: report via [SECURITY.md](https://atomgit.com/openairymax/agentrt-linux/src/branch/main/SECURITY.md), not public issues.
+- **Vulnerabilities**: report via [SECURITY.md](https://atomgit.com/openairymax/agent-linux/src/branch/main/SECURITY.md), not public issues.
 
 ## Upstream & Downstream
 

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-only
 #
-# agentrt-linux (AirymaxOS) security submodule Kbuild
+# agent-linux (AirymaxOS) security submodule Kbuild
 # 构建入口：纯 C LSM 独立内核模块（airy_ind）
 # 决策 F1：最小可编译骨架（非桩）
 #
