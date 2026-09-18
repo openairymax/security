@@ -29,8 +29,8 @@ License: GPL-2.0-only
 
 ## 相关文档
 
-- [07-directory-structure.md](../../../docs/AirymaxOS/10-architecture/07-directory-structure.md) §4.3 — security 子仓完整目录结构
-- [07-airy-lsm-design.md](../../../docs/AirymaxOS/10-architecture/07-airy-lsm-design.md) — 纯 C LSM 设计（引用）
+- [07-directory-structure.md](../../../docs/docs-linux/10-architecture/07-directory-structure.md) §4.3 — security 子仓完整目录结构
+- [07-airy-lsm-design.md](../../../docs/docs-linux/10-architecture/07-airy-lsm-design.md) — 纯 C LSM 设计（引用）
 - [lsm_types.h](../../kernel/include/uapi/linux/airymax/lsm_types.h) — [SC] LSM 类型契约
 - [security_types.h](../../kernel/include/uapi/linux/airymax/security_types.h) — [SC] 安全类型契约
 - 顶层 [CONTRIBUTING.md](../CONTRIBUTING.md) — security 子仓贡献指南
