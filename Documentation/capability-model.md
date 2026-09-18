@@ -55,6 +55,6 @@ struct airy_cap_slot {
 
 ## 4. 相关文档
 
-- [07-directory-structure.md](../../../docs/AirymaxOS/10-architecture/07-directory-structure.md) §4.3 — security 子仓完整目录结构
+- [07-directory-structure.md](../../../docs/docs-linux/10-architecture/07-directory-structure.md) §4.3 — security 子仓完整目录结构
 - [lsm_types.h](../../kernel/include/uapi/linux/airymax/lsm_types.h) — [SC] LSM 类型契约
 - [ipc.h](../../kernel/include/uapi/linux/airymax/ipc.h) — [SC] Badge 布局定义
