@@ -1,0 +1,70 @@
+/* SPDX-License-Identifier: GPL-2.0-only */
+/*
+ * Copyright (c) 2025-2026 SPHARX Ltd. All Rights Reserved.
+ *
+ * airy_cap_ids.def — Capability ID 契约源（Capability ID SSoT）
+ *
+ * 物理宿主: security/include/airy_cap_ids.def
+ * 生成器:   tools/codegen/cap_gen.py
+ * 生成产物: kernel/include/uapi/linux/airymax/security_types.h（禁止手工修改）
+ *           sdk/rust/airyx/cap_ids.rs
+ *           sdk/python/airyx/cap_ids.py
+ *
+ * 格式: AIRY_CAP_ID(symbol, value, description)
+ *   - symbol:      POSIX capability 使用裸名（如 CAP_CHOWN），cap_gen.py 生成时
+ *                  自动补 AIRY_ 前缀；Airymax 专属 capability 直接书写带
+ *                  AIRY_ 前缀的全名（如 AIRY_CAP_AGENT_SPAWN）。
+ *   - value:       0-40 对齐 Linux 6.6（CAP_LAST_CAP=CAP_CHECKPOINT_RESTORE=40），
+ *                  41-43 为 Airymax 专属扩展。
+ *   - description: 英文单行描述，供 Rust/Python 绑定与文档使用。
+ *
+ * 枚举上界 AIRY_CAP_ID_MAX 由 cap_gen.py 自动追加（不通过 X-macro 定义）。
+ */
+
+/* POSIX standard capabilities (0-40, 41 entries, aligned with Linux 6.6) */
+AIRY_CAP_ID(CAP_CHOWN,             0, "Change file owner and group")
+AIRY_CAP_ID(CAP_DAC_OVERRIDE,      1, "Bypass file read/write/exec checks")
+AIRY_CAP_ID(CAP_DAC_READ_SEARCH,   2, "Bypass file read/search checks")
+AIRY_CAP_ID(CAP_FOWNER,            3, "Bypass file owner permission checks")
+AIRY_CAP_ID(CAP_FSETID,            4, "Set setuid/setgid file bits")
+AIRY_CAP_ID(CAP_KILL,              5, "Bypass signal sending checks")
+AIRY_CAP_ID(CAP_SETGID,            6, "Set process group ID")
+AIRY_CAP_ID(CAP_SETUID,            7, "Set process user ID")
+AIRY_CAP_ID(CAP_SETPCAP,           8, "Set process capabilities")
+AIRY_CAP_ID(CAP_LINUX_IMMUTABLE,   9, "Set immutable/append-only flags")
+AIRY_CAP_ID(CAP_NET_BIND_SERVICE, 10, "Bind to ports below 1024")
+AIRY_CAP_ID(CAP_NET_BROADCAST,    11, "Network broadcast access")
+AIRY_CAP_ID(CAP_NET_ADMIN,        12, "Network administration")
+AIRY_CAP_ID(CAP_NET_RAW,          13, "Use raw and packet sockets")
+AIRY_CAP_ID(CAP_IPC_LOCK,         14, "Lock memory pages")
+AIRY_CAP_ID(CAP_IPC_OWNER,        15, "Bypass IPC ownership checks")
+AIRY_CAP_ID(CAP_SYS_MODULE,       16, "Load and unload kernel modules")
+AIRY_CAP_ID(CAP_SYS_RAWIO,        17, "Raw IO port and memory access")
+AIRY_CAP_ID(CAP_SYS_CHROOT,       18, "Use chroot")
+AIRY_CAP_ID(CAP_SYS_PTRACE,       19, "Trace arbitrary processes")
+AIRY_CAP_ID(CAP_SYS_PACCT,        20, "Configure process accounting")
+AIRY_CAP_ID(CAP_SYS_ADMIN,        21, "System administration")
+AIRY_CAP_ID(CAP_SYS_BOOT,         22, "Reboot and load kernel")
+AIRY_CAP_ID(CAP_SYS_NICE,         23, "Raise process priority")
+AIRY_CAP_ID(CAP_SYS_RESOURCE,     24, "Override resource limits")
+AIRY_CAP_ID(CAP_SYS_TIME,         25, "Set system clock")
+AIRY_CAP_ID(CAP_SYS_TTY_CONFIG,   26, "Configure TTY devices")
+AIRY_CAP_ID(CAP_MKNOD,            27, "Create device nodes")
+AIRY_CAP_ID(CAP_LEASE,            28, "Take file leases")
+AIRY_CAP_ID(CAP_AUDIT_WRITE,      29, "Write audit log entries")
+AIRY_CAP_ID(CAP_AUDIT_CONTROL,    30, "Configure audit subsystem")
+AIRY_CAP_ID(CAP_SETFCAP,          31, "Set file capabilities")
+AIRY_CAP_ID(CAP_MAC_OVERRIDE,     32, "Override MAC policy")
+AIRY_CAP_ID(CAP_MAC_ADMIN,        33, "MAC configuration")
+AIRY_CAP_ID(CAP_SYSLOG,           34, "Access kernel syslog")
+AIRY_CAP_ID(CAP_WAKE_ALARM,       35, "Trigger wakeup alarms")
+AIRY_CAP_ID(CAP_BLOCK_SUSPEND,    36, "Block system suspend")
+AIRY_CAP_ID(CAP_AUDIT_READ,       37, "Read audit logs")
+AIRY_CAP_ID(CAP_PERFMON,          38, "Performance monitoring")
+AIRY_CAP_ID(CAP_BPF,              39, "BPF operations")
+AIRY_CAP_ID(AIRY_CAP_CHECKPOINT,  40, "Checkpoint and restore")
+
+/* Airymax-specific capabilities (41-43, above Linux CAP_LAST_CAP) */
+AIRY_CAP_ID(AIRY_CAP_AGENT_SPAWN, 41, "Spawn new Agent")
+AIRY_CAP_ID(AIRY_CAP_GPU_SCHED,   42, "GPU scheduling access")
+AIRY_CAP_ID(AIRY_CAP_NPU_ACCESS,  43, "NPU compute access")
