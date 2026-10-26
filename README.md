@@ -60,8 +60,8 @@ Security changes are governed by management-repository workflows (each ≤ 2 job
 
 | Workflow | Jobs | Applies to security via |
 |----------|------|--------------------------|
-| `mgmt-orchestrator.yml` | `file-integrity` + `orchestrate-leaf-ci` | Verifies the `security/` submodule dir; aggregates this repo's CI status |
-| `sc-dual-ci.yml` | `sc-validate` + `sc-trigger-and-await` | Guards `security_types.h` in the `[SC]` 10 core headers; triggers agentrt mirror PR on changes |
+| `mgmt-verify.yml` | `file-integrity` + `orchestrate-leaf-ci` | Verifies the `security/` submodule dir; aggregates this repo's CI status |
+| `sc-verify.yml` | `sc-validate` + `sc-trigger-and-await` | Guards `security_types.h` in the `[SC]` 10 core headers; triggers agentrt mirror PR on changes |
 | `nightly.yml` | `nightly-test-suite` (seL4-style formal verification of security-critical paths) + `nightly-revert-or-budget` | Nightly cron |
 | `release.yml` | `build-and-sign` (SBOM scan of `security/`, GPG/cosign signing keys) + `publish-release` | Release tag |
 
@@ -75,7 +75,7 @@ own `.github/workflows/`.
 - **Commit prefix**: `security:`.
 - **Code style**: C — tab-8, 80 cols (`.clang-format`); run `make format-check`.
 - **`[SC]` changes**: edits to `security_types.h` require dual CI (agent-linux
-  `sc-dual-ci.yml` + agentrt mirror PR) and L1+L3 approval per OS-IRON-014.
+  `sc-verify.yml` + agentrt mirror PR) and L1+L3 approval per OS-IRON-014.
 - **Function prefix**: `airy_*` (not legacy `airymaxos_*`).
 - **Vulnerabilities**: report via [SECURITY.md](https://atomgit.com/openairymax/agent-linux/src/branch/main/SECURITY.md), not public issues.
 
