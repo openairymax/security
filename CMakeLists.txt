@@ -2,7 +2,8 @@
 #
 # security/CMakeLists.txt — security 子仓的用户态构建入口
 #
-# 职责：构建 Landlock 用户态库、CLI 与测试。
+# 职责：构建 Landlock 与 IPC 控制面的用户态
+# 库、CLI 与测试。
 # security/airy_lsm 内核模块仍由同目录 Kbuild
 # 构建，本文件不引用、不改写 Kbuild。
 #
@@ -31,3 +32,4 @@ if(BUILD_TESTING)
 endif()
 
 add_subdirectory(landlock)
+add_subdirectory(ipc)
