@@ -146,14 +146,34 @@ static int add_one(int ruleset, const struct ll_rule *rule)
 	return ret;
 }
 
+/*
+ * 访问位与内核 ABI 的对应关系：refer 自 ABI 2
+ * 起可用，truncate 自 ABI 3 起可用。基线 6.6
+ * 为 ABI 3，低版本内核必须显式拒绝而不是让
+ * create_ruleset 返回含义模糊的 EINVAL。
+ */
+static int abi_ok(__u64 hdl, int abi)
+{
+	if ((hdl & LL_FS_REFER) && abi < 2)
+		return 0;
+	if ((hdl & LL_FS_TRUNCATE) && abi < 3)
+		return 0;
+	return 1;
+}
+
 int ll_policy_build(const struct ll_policy *pol)
 {
 	struct ll_ruleset_attr attr;
-	int fd, ret;
+	int abi, fd, ret;
 	size_t i;
 
 	if (!pol_valid(pol))
 		return -EINVAL;
+	abi = ll_sys_abi();
+	if (abi <= 0)
+		return abi < 0 ? abi : -ENOTSUP;
+	if (!abi_ok(pol->handled, abi))
+		return -ENOTSUP;
 	attr.handled_access_fs = pol->handled;
 	fd = (int)syscall(SYS_landlock_create_ruleset, &attr,
 			  sizeof(attr), 0);
